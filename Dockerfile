@@ -1,4 +1,4 @@
-FROM php:8.5-apache
+FROM php:8.4-apache
 
 RUN apt-get update && apt-get install -y \
     git unzip zip libzip-dev
@@ -15,7 +15,9 @@ RUN composer install --no-dev --optimize-autoloader
 
 RUN a2enmod rewrite
 
-COPY .docker/vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf
+
+RUN chown -R www-data:www-data storage bootstrap/cache
 
 EXPOSE 80
 
