@@ -15,7 +15,7 @@ RUN composer install --no-dev --optimize-autoloader
 
 RUN a2enmod rewrite
 
-COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY .docker/vhost.conf /etc/apache2/sites-available/000-default.conf
 
 RUN chown -R www-data:www-data storage bootstrap/cache
 
